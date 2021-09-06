@@ -6,6 +6,24 @@ void main() {
 }
 
 class XylophoneApp extends StatelessWidget {
+
+  void playSound(fileNum){
+    final player = AudioCache();
+    player.play('note$fileNum.wav');
+  }
+
+  Expanded xylophoneButton(int fileNum, Color color) {
+    return  Expanded(
+      child: MaterialButton(
+        color: color,
+        minWidth: double.infinity,
+        onPressed: (() {
+          playSound(fileNum);
+        }),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,17 +42,4 @@ class XylophoneApp extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget xylophoneButton(int fileNum, Color color) {
-  return  Expanded(
-    child: MaterialButton(
-      color: color,
-      minWidth: double.infinity,
-      onPressed: (() {
-        final player = AudioCache();
-        player.play('note$fileNum.wav');
-      }),
-    ),
-  );
 }
